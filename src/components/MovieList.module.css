@@ -1,0 +1,8 @@
+.movie__list{
+  font-size:24px;
+  list-style: none;
+  color: black;
+}
+.movie__item{
+ margin-bottom: 10px;
+}

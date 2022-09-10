@@ -5,7 +5,7 @@ import { Routes, Route, NavLink } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import Cast from '../pages/Cast';
 import MovieDetailsPage from '../pages/MovieDetailsPage';
-import MoviePage from '../pages/MoviePAge';
+import MoviesPage from '../pages/MoviesPage';
 import Reviews from '../pages/Reviews';
 import fetchTrendyMovies from 'services/fetchTrendyMovie';
 
