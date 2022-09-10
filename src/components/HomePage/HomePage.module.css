@@ -3,4 +3,13 @@
 }
 .heading{
   font-size: 45px;
+  margin-bottom: 20px;
+}
+.trendy__list{
+  font-size:24px;
+  list-style: none;
+  color: black;
+}
+.trendy__item{
+ margin-bottom: 10px;
 }

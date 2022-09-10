@@ -1,8 +1,9 @@
 import styles from './App.module.css';
 import styled from 'styled-components';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import HomePage from './HomePage/HomePage';
+import fetchTrendyMovies from 'services/fetchTrendyMovie';
 
 const StyledLink = styled(NavLink)`
   color: black;
@@ -14,6 +15,22 @@ const StyledLink = styled(NavLink)`
 
 const App = () => {
   const { container, nav, link } = styles;
+  const [movies, setMovies] = useState([]);
+
+  const getTrendyMovies = () => {
+    return fetchTrendyMovies()
+      .then(response => {
+        const trendyMovies = response.results;
+        return setMovies(trendyMovies);
+      })
+
+      .catch(error => {
+        console.error(error);
+      });
+  };
+  useEffect(() => {
+    getTrendyMovies();
+  }, []);
 
   return (
     <div className={container}>
@@ -26,7 +43,7 @@ const App = () => {
         </StyledLink>
       </nav>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage movies={movies} />} />
       </Routes>
     </div>
   );
