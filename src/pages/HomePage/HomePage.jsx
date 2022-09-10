@@ -12,7 +12,7 @@ const HomePage = ({ movies }) => {
       <ul className={trendy__list}>
         {movies.map(({ title, id }) => (
           <li className={trendy__item} key={id}>
-            <Link to="/movies/:movieId">{title}</Link>
+            <Link to={`/movies/${id}`}>{title}</Link>
           </li>
         ))}
       </ul>
