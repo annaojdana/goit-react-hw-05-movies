@@ -2,11 +2,11 @@ import styles from './App.module.css';
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, NavLink } from 'react-router-dom';
-import HomePage from '../pages/HomePage';
-import Cast from '../pages/Cast';
-import MovieDetailsPage from '../pages/MovieDetailsPage';
-import MoviesPage from '../pages/MoviesPage';
-import Reviews from '../pages/Reviews';
+import HomePage from '../pages/HomePage/HomePage';
+import Cast from '../pages/Cast/Cast';
+import MovieDetailsPage from '../pages/MovieDetailsPage/MovieDetailsPage';
+import MoviesPage from '../pages/MoviesPage/MoviesPage';
+import Reviews from '../pages/Reviews/Reviews';
 import fetchTrendyMovies from 'services/fetchTrendyMovie';
 
 const StyledLink = styled(NavLink)`
