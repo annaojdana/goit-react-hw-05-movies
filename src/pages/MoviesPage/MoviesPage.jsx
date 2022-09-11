@@ -44,9 +44,6 @@ const MoviesPage = () => {
   return (
     <main className={container}>
       <form className={form} onSubmit={onSubmit}>
-        <button type="submit" className={button}>
-          <span className={label}>Search</span>
-        </button>
         <input
           key={nanoid()}
           name="queryInput"
@@ -55,6 +52,9 @@ const MoviesPage = () => {
           autoComplete="off"
           placeholder="Search images and photos"
         />
+        <button type="submit" className={button}>
+          <span className={label}>Search</span>
+        </button>
       </form>
       {errorMessage && <div>{errorMessage}</div>}
       <MovieList movies={movies} />

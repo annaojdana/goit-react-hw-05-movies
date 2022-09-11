@@ -30,7 +30,7 @@ const MovieDetailsPage = () => {
 
   return (
     <main>
-      <button onClick={() => navigate(-1)}>go to back</button>
+      <button onClick={() => navigate("/")}>go to back</button>
       <img
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
         alt={`Poster of ${title}`}
