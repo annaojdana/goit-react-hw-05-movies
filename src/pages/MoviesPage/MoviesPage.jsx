@@ -7,7 +7,7 @@ import MovieList from 'components/MovieList';
 // import PropTypes from 'prop-types';
 
 const MoviesPage = () => {
-  const { form, input, button, label } = styles;
+  const { container, form, input, button, label } = styles;
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [errorMessage, setErrorMessage] = useState();
@@ -42,7 +42,7 @@ const MoviesPage = () => {
   console.log(query);
 
   return (
-    <div>
+    <main className={container}>
       <form className={form} onSubmit={onSubmit}>
         <button type="submit" className={button}>
           <span className={label}>Search</span>
@@ -59,7 +59,7 @@ const MoviesPage = () => {
       {errorMessage && <div>{errorMessage}</div>}
       <MovieList movies={movies} />
       <Outlet />
-    </div>
+    </main>
   );
 };
 
