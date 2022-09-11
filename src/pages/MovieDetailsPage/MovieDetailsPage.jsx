@@ -10,20 +10,20 @@ const MovieDetailsPage = () => {
 
   const { title, overview, vote_average, genres, poster_path } = movie;
 
-  const getMovieById = () => {
-    return fetchMovieById(movieId)
-      .then(response => {
-        console.log(response);
-        const choosenMovie = response;
-        console.log(choosenMovie);
-        return setMovie(choosenMovie);
-      })
-
-      .catch(error => {
-        console.error(error);
-      });
-  };
   useEffect(() => {
+    const getMovieById = () => {
+      return fetchMovieById(movieId)
+        .then(response => {
+          console.log(response);
+          const choosenMovie = response;
+          console.log(choosenMovie);
+          return setMovie(choosenMovie);
+        })
+
+        .catch(error => {
+          console.error(error);
+        });
+    };
     getMovieById();
   }, [movieId]);
 
