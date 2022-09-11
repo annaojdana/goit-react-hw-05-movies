@@ -45,7 +45,7 @@ const fetchMovieCast = async (movieId) => {
     console.error(error);
   }
 };
-const fetchMovieReview = async (movieId) => {
+const fetchMovieReviews = async (movieId) => {
   try {
     const response = await axios.get(
       `${BASE_URL}movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`
@@ -57,7 +57,7 @@ const fetchMovieReview = async (movieId) => {
   }
 };
 
-export { fetchMovieById, fetchTrendyMovies, fetchMovieCast, fetchMovieReview };
+export { fetchMovieById, fetchTrendyMovies, fetchMovieCast, fetchMovieReviews };
 /* Wywoływanie funkcji:
 fetchTrendyMovies(); - wywołanie domyślne tj. page = 1 i wyszukiwanie popularnych z tygodnia
 fetchTrendyMovies(5); - wywołanie strony 5 i wyszukiwanie popularnych z tygodnia
