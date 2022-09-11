@@ -1,8 +1,10 @@
 .container {
-  padding: 50px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 150px 20px;
 }
-.heading{
+.heading {
   font-size: 45px;
   margin-bottom: 20px;
 }
-
