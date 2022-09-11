@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const MovieList = ({ movies }) => {
-  const {movie__item, movie__list } = styles;
+  const { movie__item, movie__list } = styles;
+
+
   return (
     <ul className={movie__list}>
       {movies.map(({ title, id }) => (
