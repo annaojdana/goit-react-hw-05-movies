@@ -23,7 +23,7 @@ const fetchTrendyMovies = async (pageNumber = 1, period = 'day') => {
     console.log(`${error.name}: ${error.message}`);
   }
 };
-const fetchMovieById = async (movieId) => {
+const fetchMovieById = async movieId => {
   try {
     const response = await axios.get(
       `${BASE_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`
@@ -34,7 +34,7 @@ const fetchMovieById = async (movieId) => {
     console.error(error);
   }
 };
-const fetchMovieCast = async (movieId) => {
+const fetchMovieCast = async movieId => {
   try {
     const response = await axios.get(
       `${BASE_URL}movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`
@@ -45,7 +45,7 @@ const fetchMovieCast = async (movieId) => {
     console.error(error);
   }
 };
-const fetchMovieReviews = async (movieId) => {
+const fetchMovieReviews = async movieId => {
   try {
     const response = await axios.get(
       `${BASE_URL}movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US`
@@ -56,8 +56,24 @@ const fetchMovieReviews = async (movieId) => {
     console.error(error);
   }
 };
+const fetchMovieByQuery = async query => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}&page=1&include_adult=false`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-export { fetchMovieById, fetchTrendyMovies, fetchMovieCast, fetchMovieReviews };
+export {
+  fetchMovieById,
+  fetchTrendyMovies,
+  fetchMovieCast,
+  fetchMovieReviews,
+  fetchMovieByQuery,
+};
 /* Wywoływanie funkcji:
 fetchTrendyMovies(); - wywołanie domyślne tj. page = 1 i wyszukiwanie popularnych z tygodnia
 fetchTrendyMovies(5); - wywołanie strony 5 i wyszukiwanie popularnych z tygodnia
