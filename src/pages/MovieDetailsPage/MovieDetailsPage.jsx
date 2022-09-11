@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link, Outlet } from 'react-router-dom';
 import { fetchMovieById } from 'services/fetchTrendyMovie';
 // import PropTypes from 'prop-types';
 
@@ -8,7 +8,8 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
 
-  const { title, overview, vote_average, genres, poster_path } = movie;
+  const { title, overview, vote_average, genres, poster_path} =
+    movie;
 
   useEffect(() => {
     const getMovieById = () => {
@@ -41,6 +42,18 @@ const MovieDetailsPage = () => {
         <p>{overview}</p>
         <h2>Genres</h2>
         <p>{genres?.map(({ name }) => name + ', ')}</p>
+      </div>
+      <div>
+        <h3>Additional information</h3>
+        <ul>
+          <li>
+            <Link to={`cast`}>Cast</Link>
+          </li>
+          <li>
+            <Link to={`reviews`}>Reviews</Link>
+          </li>
+        </ul>
+        <Outlet />
       </div>
     </main>
   );

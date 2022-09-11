@@ -52,9 +52,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage movies={movies} />} />
         <Route path="/movies" element={<MoviesPage />}>
-          <Route path="/:movieId" element={<MovieDetailsPage />}>
-            <Route path="/cast" element={<Cast />} />
-            <Route path="/reviews" element={<Reviews />} />
+          <Route path=":movieId" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
       </Routes>
