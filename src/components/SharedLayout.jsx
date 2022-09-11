@@ -4,17 +4,17 @@ import React from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 
 const StyledLink = styled(NavLink)`
-  color: black;
+  color: #fff;
 
   &.active {
-    color: red;
+    color: #ae0808;
   }
 `;
 const SharedLayout = () => {
-  const { nav, link } = styles;
+  const { header, nav, link } = styles;
   return (
     <div>
-      <header>
+      <header className={header}>
         <nav className={nav}>
           <StyledLink className={link} to="/">
             Home
