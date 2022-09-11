@@ -1,10 +1,28 @@
 import styles from './HomePage.module.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MovieList from 'components/MovieList';
-import PropTypes from 'prop-types';
+import { fetchTrendyMovies } from 'services/fetchTrendyMovie';
 
-const HomePage = ({ movies }) => {
+const HomePage = () => {
   const { container, heading } = styles;
+
+  const [movies, setMovies] = useState([]);
+
+  const getTrendyMovies = () => {
+    return fetchTrendyMovies()
+      .then(response => {
+        const trendyMovies = response.results;
+        return setMovies(trendyMovies);
+      })
+
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    getTrendyMovies();
+  }, []);
 
   return (
     <main className={container}>
@@ -12,10 +30,6 @@ const HomePage = ({ movies }) => {
       <MovieList movies={movies} />
     </main>
   );
-};
-
-HomePage.propTypes = {
-movies: PropTypes.array,
 };
 
 export default HomePage;
