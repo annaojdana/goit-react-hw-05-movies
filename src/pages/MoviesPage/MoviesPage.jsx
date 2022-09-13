@@ -1,5 +1,5 @@
 import styles from './MoviesPage.module.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 import { fetchMovieByQuery } from 'services/fetchTrendyMovie';
 import MovieList from 'components/MovieList';
@@ -8,19 +8,25 @@ import SearchBar from 'components/SearchBar';
 
 const MoviesPage = () => {
   const { container } = styles;
-  const [movies, setMovies] = useState([]);
-  const [errorMessage, setErrorMessage] = useState();
+  const [searchedMovies, setSearchedMovies] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
-  const movieName = searchParams.get('name') ?? '';
+  const query = searchParams.get('query') ?? '';
 
-  const updateQueryString = name => {
-    const nextParams = name !== '' ? { name } : {};
-    setSearchParams(nextParams);
+  const onSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const queryValue = form.elements.query.value;
+    if (queryValue === '') {
+      return setErrorMessage('The search field cannot be empty');
+    }
+    setSearchParams({ query: queryValue });
+    form.reset();
   };
 
-  const findMoviesByQuery = () => {
-    if (movieName) {
-      return fetchMovieByQuery(movieName)
+  useEffect(() => {
+    if (query) {
+      return fetchMovieByQuery(query)
         .then(response => {
           if (response.results === 0) {
             return setErrorMessage(
@@ -28,28 +34,24 @@ const MoviesPage = () => {
             );
           }
           setErrorMessage('');
-          const setQueryResponse = ({ results }) => {
-            setMovies(results);
-          };
-          return setQueryResponse(response);
+          return setSearchedMovies(response.results);
         })
         .catch(error => {
           console.log(error);
           setErrorMessage('Unable to fetch images');
         });
     }
-    setErrorMessage('The search field cannot be empty');
-  };
+    return setSearchedMovies([]);
+  }, [query]);
 
   return (
     <main className={container}>
-      <SearchBar value={movieName} onChange={updateQueryString} />
+      <SearchBar onSubmit={onSubmit} />
       {errorMessage && <div>{errorMessage}</div>}
-      <MovieList movies={movies} />
+      <MovieList movies={searchedMovies} />
       <Outlet />
     </main>
   );
 };
-
 
 export default MoviesPage;

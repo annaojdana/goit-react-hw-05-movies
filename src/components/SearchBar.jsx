@@ -3,20 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
-const SearchBar = ({ value, onChange }) => {
+const SearchBar = ({onSubmit }) => {
   const { form, input, button, label } = styles;
 
   return (
-    <form className={form}>
-      <input
-        key={nanoid()}
-        name="queryInput"
-        className={input}
-        type="text"
-        autoComplete="off"
-        placeholder="Search images and photos"
-        onChange={e => onChange(e.target.value)}
-      />
+    <form className={form} onSubmit={e => onSubmit(e)}>
+      <input key={nanoid()} className={input} type="text" name="query" />
       <button type="submit" className={button}>
         <span className={label}>Search</span>
       </button>
@@ -24,6 +16,6 @@ const SearchBar = ({ value, onChange }) => {
   );
 };
 
-SearchBar.propTypes = { value: PropTypes.string, onChange: PropTypes.func };
+SearchBar.propTypes = {  onSubmit: PropTypes.func };
 
 export default SearchBar;
