@@ -1,6 +1,6 @@
 import styles from './MoviesPage.module.css';
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import { fetchMovieByQuery } from 'services/fetchTrendyMovie';
 import MovieList from 'components/MovieList';
 import SearchBar from 'components/SearchBar';
@@ -8,42 +8,42 @@ import SearchBar from 'components/SearchBar';
 
 const MoviesPage = () => {
   const { container } = styles;
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [errorMessage, setErrorMessage] = useState();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const movieName = searchParams.get('name') ?? '';
 
-  // const onSubmit = e => {
-  //   e.preventDefault();
-  //   const { queryInput } = e.target.elements;
-  //   const queryValue = queryInput.value;
+  const updateQueryString = name => {
+    const nextParams = name !== '' ? { name } : {};
+    setSearchParams(nextParams);
+  };
 
-  //   if (queryValue) {
-  //     return fetchMovieByQuery(queryValue)
-  //       .then(response => {
-  //         if (response.results === 0) {
-  //           return setErrorMessage(
-  //             'Sorry, there are no images matching your search query. Please try again.'
-  //           );
-  //         }
-  //         setErrorMessage('');
-  //         const setQueryResponse = ({ results }) => {
-  //           setQuery(queryValue);
-  //           setMovies(results);
-  //         };
-  //         return setQueryResponse(response);
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //         setErrorMessage('Unable to fetch images');
-  //       });
-  //   }
-  //   setErrorMessage('The search field cannot be empty');
-  // };
-  // console.log(query);
+  const findMoviesByQuery = () => {
+    if (movieName) {
+      return fetchMovieByQuery(movieName)
+        .then(response => {
+          if (response.results === 0) {
+            return setErrorMessage(
+              'Sorry, there are no images matching your search query. Please try again.'
+            );
+          }
+          setErrorMessage('');
+          const setQueryResponse = ({ results }) => {
+            setMovies(results);
+          };
+          return setQueryResponse(response);
+        })
+        .catch(error => {
+          console.log(error);
+          setErrorMessage('Unable to fetch images');
+        });
+    }
+    setErrorMessage('The search field cannot be empty');
+  };
 
   return (
     <main className={container}>
-      <SearchBar/>
+      <SearchBar value={movieName} onChange={updateQueryString} />
       {errorMessage && <div>{errorMessage}</div>}
       <MovieList movies={movies} />
       <Outlet />
@@ -51,8 +51,5 @@ const MoviesPage = () => {
   );
 };
 
-// MoviesPage.propTypes = {
-
-// };
 
 export default MoviesPage;

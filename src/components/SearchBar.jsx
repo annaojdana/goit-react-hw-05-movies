@@ -15,7 +15,7 @@ const SearchBar = ({ value, onChange }) => {
         type="text"
         autoComplete="off"
         placeholder="Search images and photos"
-        onChange={onChange}
+        onChange={e => onChange(e.target.value)}
       />
       <button type="submit" className={button}>
         <span className={label}>Search</span>
