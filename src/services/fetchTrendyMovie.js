@@ -23,6 +23,7 @@ const fetchTrendyMovies = async (pageNumber = 1, period = 'day') => {
     console.log(`${error.name}: ${error.message}`);
   }
 };
+
 const fetchMovieById = async movieId => {
   try {
     const response = await axios.get(
@@ -74,9 +75,4 @@ export {
   fetchMovieReviews,
   fetchMovieByQuery,
 };
-/* Wywoływanie funkcji:
-fetchTrendyMovies(); - wywołanie domyślne tj. page = 1 i wyszukiwanie popularnych z tygodnia
-fetchTrendyMovies(5); - wywołanie strony 5 i wyszukiwanie popularnych z tygodnia
-fetchTrendyMovies(3, "day"); - wywołanie strony 3 i wyszukiwanie popularnych z dnia
-fetchTrendyMovies(undefined, "day"); - wywołanie strony domyślnej tj. page = 1 i wyszukiwanie popularnych z dnia
-*/
+
