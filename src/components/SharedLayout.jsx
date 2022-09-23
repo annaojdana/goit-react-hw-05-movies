@@ -1,7 +1,8 @@
 import styles from './SharedLayout.module.css';
 import styled from 'styled-components';
-import React from 'react';
+import React, {Suspense} from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
+import Loader from './Loader/Loader';
 
 const StyledLink = styled(NavLink)`
   color: #fff;
@@ -16,19 +17,18 @@ const StyledLink = styled(NavLink)`
 const SharedLayout = () => {
   const { header, nav } = styles;
   return (
-    <div>
+    <>
       <header className={header}>
         <nav className={nav}>
-          <StyledLink to="/">
-            Home
-          </StyledLink>
-          <StyledLink to="/movies">
-            Movies
-          </StyledLink>
+          <StyledLink to="/">Home</StyledLink>
+          <StyledLink to="/movies">Movies</StyledLink>
         </nav>
       </header>
-      <Outlet />
-    </div>
+      <Suspense fallback={<Loader />}>
+          <Outlet />
+      </Suspense>
+
+    </>
   );
 };
 

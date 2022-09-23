@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import {
   useLocation,
   useNavigate,
@@ -7,6 +7,7 @@ import {
   Outlet,
 } from 'react-router-dom';
 import { fetchMovieById } from 'services/apiSupport';
+import Loader from 'components/Loader/Loader';
 
 const MovieDetailsPage = () => {
   const navigate = useNavigate();
@@ -27,10 +28,19 @@ const MovieDetailsPage = () => {
       <button onClick={() => navigate(backTo, { replace: true })}>
         Go back
       </button>
-      <img
-        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-        alt={`Poster of ${title}`}
-      />
+      <div>
+        {poster_path ? (
+          <img
+            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            alt={`Poster of ${title}`}
+          />
+        ) : (
+          <img
+            src={'https://placehold.co/500x750'}
+            alt={`Placeholder`}
+          />
+        )}
+      </div>
       <div>
         <h1>{title}</h1>
         <p>User Score: {(vote_average * 10).toFixed(0)}%</p>
@@ -43,13 +53,19 @@ const MovieDetailsPage = () => {
         <h3>Additional information</h3>
         <ul>
           <li>
-            <Link to={`cast`}>Cast</Link>
+            <Link to={`cast`} state={location.state}>
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to={`reviews`}>Reviews</Link>
+            <Link to={`reviews`} state={location.state}>
+              Reviews
+            </Link>
           </li>
         </ul>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </div>
     </main>
   );
