@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
-const SearchBar = ({onSubmit }) => {
+const SearchBar = ({ onSubmit }) => {
   const { form, input, button, label } = styles;
 
   return (
@@ -16,6 +16,6 @@ const SearchBar = ({onSubmit }) => {
   );
 };
 
-SearchBar.propTypes = {  onSubmit: PropTypes.func };
+SearchBar.propTypes = { onSubmit: PropTypes.func };
 
 export default SearchBar;
