@@ -27,18 +27,7 @@ const MoviesPage = () => {
 
   useEffect(() => {
     if (query) {
-      const getSeachingMovies = async query => {
-        try {
-          const movies = await fetchMovieByQuery(query);
-          return setSearchedMovies(movies);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      console.log(searchedMovies);
-      return getSeachingMovies(query);
-
-      return setSearchedMovies([]);
+      fetchMovieByQuery(query, setSearchedMovies).catch(console.error);
     }
   }, [query]);
 

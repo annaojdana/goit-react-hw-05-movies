@@ -58,12 +58,15 @@ const fetchMovieReviews = async (movieId, setReviews) => {
     console.log(`${error.name}: ${error.message}`);
   }
 };
-const fetchMovieByQuery = async query => {
+
+// fetching the movies by query
+
+const fetchMovieByQuery = async (query, setSearchedMovies) => {
   try {
     const response = await axios.get(
       `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}&page=1&include_adult=false`
     );
-    return response.data.results;
+    return setSearchedMovies(response.data.results);
   } catch (error) {
     console.log(`${error.name}: ${error.message}`);
   }
