@@ -6,7 +6,7 @@ import {
   Link,
   Outlet,
 } from 'react-router-dom';
-import { fetchMovieById } from 'services/fetchTrendyMovie';
+import { fetchMovieById } from 'services/apiSupport';
 
 const MovieDetailsPage = () => {
   const navigate = useNavigate();

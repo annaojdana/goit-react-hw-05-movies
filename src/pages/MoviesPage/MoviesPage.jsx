@@ -1,7 +1,7 @@
 import styles from './MoviesPage.module.css';
 import React, { useState, useEffect } from 'react';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
-import { fetchMovieByQuery } from 'services/fetchTrendyMovie';
+import { fetchMovieByQuery } from 'services/apiSupport';
 import MovieList from 'components/MovieList';
 import SearchBar from 'components/SearchBar';
 // import PropTypes from 'prop-types';

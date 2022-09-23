@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieReviews } from 'services/fetchTrendyMovie';
+import { fetchMovieReviews } from 'services/apiSupport';
 import { nanoid } from 'nanoid';
 
 
