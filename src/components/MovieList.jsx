@@ -4,15 +4,23 @@ import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const MovieList = ({ movies }) => {
-  const { movie__item, movie__list } = styles;
+  const { movie__item, movie__list, movie__title, movie__link } = styles;
   const location = useLocation();
 
   return (
     <ul className={movie__list}>
-      {movies.map(({ title, id }) => (
+      {movies.map(({ title, id, poster_path }) => (
         <li className={movie__item} key={id}>
-          <Link to={`/movies/${id}`} state={{ from: location }}>
-            {title}
+          <Link className={movie__link} to={`/movies/${id}`} state={{ from: location }}>
+            {poster_path ? (
+              <img
+                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                alt={`Poster of ${title}`}
+              />
+            ) : (
+              <img src={'https://placehold.co/500x750'} alt={`Placeholder`} />
+            )}
+            <p className={movie__title}>{title}</p>
           </Link>
         </li>
       ))}

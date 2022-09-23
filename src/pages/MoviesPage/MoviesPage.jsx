@@ -8,7 +8,8 @@ import SearchBar from 'components/SearchBar';
 
 const MoviesPage = () => {
   const { container } = styles;
-   const params = useParams();
+
+  const params = useParams();
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
@@ -22,6 +23,7 @@ const MoviesPage = () => {
       return setErrorMessage('The search field cannot be empty');
     }
     setSearchParams({ query: queryValue });
+    setErrorMessage('');
     form.reset();
   };
 

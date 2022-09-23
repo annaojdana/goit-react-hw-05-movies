@@ -1,8 +1,30 @@
-.movie__list{
-  font-size:24px;
-  list-style: none;
-  color: black;
+.movie__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  list-style-type: none;
 }
-.movie__item{
- margin-bottom: 10px;
+.movie__item {
+  max-width: 300px;
+  width: 100%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  overflow: hidden;
+  background-color: #fff;
+  transition: scale cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.movie__item:hover {
+  scale: 0.9;
+}
+
+.movie__title {
+  padding: 20px;
+  font-size: 20px;
+
+}
+.movie__link {
+  text-decoration: none;
+  color: black;
 }

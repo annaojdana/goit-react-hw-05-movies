@@ -3,8 +3,9 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 150px 20px;
+  background-color: #e0d6e4;
 }
 .heading {
   font-size: 45px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
