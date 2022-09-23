@@ -30,7 +30,7 @@ const Cast = () => {
                   ) : (
                     <img
                       src={'https://placehold.jp/200x300.png'}
-                      alt={`just placeholder`}
+                      alt={`Placeholder`}
                     />
                   )}
                   <h4>Name: {name}</h4>
