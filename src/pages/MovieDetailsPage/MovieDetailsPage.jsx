@@ -1,36 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams, Link, Outlet } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  Link,
+  Outlet,
+} from 'react-router-dom';
 import { fetchMovieById } from 'services/fetchTrendyMovie';
-// import PropTypes from 'prop-types';
 
 const MovieDetailsPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { movieId } = useParams();
+  const backTo = location.state?.from ?? '/';
+
   const [movie, setMovie] = useState({});
 
-  const { title, overview, vote_average, genres, poster_path} =
-    movie;
+  const { title, overview, vote_average, genres, poster_path } = movie;
 
   useEffect(() => {
-    const getMovieById = () => {
-      return fetchMovieById(movieId)
-        .then(response => {
-          console.log(response);
-          const choosenMovie = response;
-          console.log(choosenMovie);
-          return setMovie(choosenMovie);
-        })
-
-        .catch(error => {
-          console.error(error);
-        });
-    };
-    getMovieById();
+    fetchMovieById(movieId, setMovie).catch(console.error);
   }, [movieId]);
 
   return (
     <main>
-      <button onClick={() => navigate("/")}>go to back</button>
+      <button onClick={() => navigate(backTo, { replace: true })}>
+        Go back
+      </button>
       <img
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
         alt={`Poster of ${title}`}
@@ -58,9 +54,5 @@ const MovieDetailsPage = () => {
     </main>
   );
 };
-
-// MovieDetailsPage.propTypes = {
-
-// };
 
 export default MovieDetailsPage;

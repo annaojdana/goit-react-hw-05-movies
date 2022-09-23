@@ -8,20 +8,8 @@ const HomePage = () => {
 
   const [movies, setMovies] = useState([]);
 
-  const getTrendyMovies = () => {
-    return fetchTrendyMovies()
-      .then(response => {
-        const trendyMovies = response.results;
-        return setMovies(trendyMovies);
-      })
-
-      .catch(error => {
-        console.error(error);
-      });
-  };
-
   useEffect(() => {
-    getTrendyMovies();
+    fetchTrendyMovies(setMovies).catch(console.error);
   }, []);
 
   return (

@@ -3,36 +3,27 @@ import axios from 'axios';
 const API_KEY = '34b039d9928c0cbb29ba3089b029dd2e';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
-const fetchTrendyMovies = async (pageNumber = 1, period = 'day') => {
-  const endPoints = {
-    media_type: 'movie',
-    time_window: period,
-  };
-
-  const params = new URLSearchParams({
-    api_key: API_KEY,
-    page: pageNumber,
-  });
-
+const fetchTrendyMovies = async setMovies => {
   try {
-    const { media_type, time_window } = endPoints;
-    const response = await axios.get(`
-    ${BASE_URL}trending/${media_type}/${time_window}?${params}`);
-    return response.data;
+    const response = await axios.get(
+      `${BASE_URL}trending/movie/day?api_key=${API_KEY}`
+    );
+
+    return setMovies(response.data.results);
   } catch (error) {
     console.log(`${error.name}: ${error.message}`);
   }
 };
 
-const fetchMovieById = async movieId => {
+const fetchMovieById = async (movieId, setMovie) => {
   try {
     const response = await axios.get(
       `${BASE_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`
     );
 
-    return response.data;
+    return setMovie(response.data);
   } catch (error) {
-    console.error(error);
+    console.log(`${error.name}: ${error.message}`);
   }
 };
 const fetchMovieCast = async movieId => {
@@ -43,7 +34,7 @@ const fetchMovieCast = async movieId => {
 
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.log(`${error.name}: ${error.message}`);
   }
 };
 const fetchMovieReviews = async movieId => {
@@ -54,7 +45,7 @@ const fetchMovieReviews = async movieId => {
 
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.log(`${error.name}: ${error.message}`);
   }
 };
 const fetchMovieByQuery = async query => {
@@ -64,7 +55,7 @@ const fetchMovieByQuery = async query => {
     );
     return response.data.results;
   } catch (error) {
-    console.error(error);
+    console.log(`${error.name}: ${error.message}`);
   }
 };
 
@@ -75,4 +66,3 @@ export {
   fetchMovieReviews,
   fetchMovieByQuery,
 };
-
