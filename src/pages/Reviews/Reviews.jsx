@@ -1,10 +1,11 @@
+import styles from './Reviews.module.css';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from 'services/apiSupport';
 import { nanoid } from 'nanoid';
 
-
 const Reviews = () => {
+  const { list, item, title, wrapper, text } = styles;
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
 
@@ -13,27 +14,23 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <section>
-        {reviews.length < 1 ? (
-          <p>Sorry, the reviews is not available!</p>
-        ) : (
-          <ul>
-            {reviews.map(({ author, content }) => {
-              return (
-                <li key={nanoid()}>
-                  <h4>Author: {author}</h4>
-                  <p>{content}</p>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </section>
-    </div>
+    <section className={wrapper}>
+      {reviews.length < 1 ? (
+        <p className="error">Sorry, the reviews is not available!</p>
+      ) : (
+        <ul className={list}>
+          {reviews.map(({ author, content }) => {
+            return (
+              <li className={item} key={nanoid()}>
+                <h4 className={title}>{author}</h4>
+                <p className={text}>{content}</p>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </section>
   );
 };
-
-
 
 export default Reviews;

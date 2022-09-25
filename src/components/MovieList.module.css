@@ -12,6 +12,7 @@
   border-bottom-right-radius: 15px;
   overflow: hidden;
   background-color: #fff;
+  box-shadow: 0 5px 8px 0 rgb(79 90 93 / 8%);
   transition: scale cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .movie__list img {

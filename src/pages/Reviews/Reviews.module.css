@@ -1,0 +1,27 @@
+.wrapper {
+  padding: 30px;
+  background-color: #fff;
+  display: flex;
+  margin-bottom: 16px;
+  border: 1px solid #e2e1e0;
+  border-radius: 3px;
+}
+.list {
+  list-style-type: none;
+}
+.item:not(:last-of-type) {
+  margin-bottom: 18px;
+  border-bottom: solid 1px #e2e1e0;
+}
+.text,
+.title {
+  font-size: 15px;
+  color: #534b56;
+  line-height: 22px;
+}
+.text {
+  padding: 15px 0 18px;
+}
+.title{
+  font-weight: 600;
+}

@@ -16,7 +16,7 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <div>
+
       <section>
         {cast.length < 1 ? (
           <p className='error'>Sorry, the cast is not available!</p>
@@ -46,7 +46,7 @@ const Cast = () => {
           </ul>
         )}
       </section>
-    </div>
+   
   );
 };
 
