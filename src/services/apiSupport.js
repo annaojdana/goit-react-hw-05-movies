@@ -66,7 +66,8 @@ const fetchMovieByQuery = async (query, setSearchedMovies) => {
     const response = await axios.get(
       `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}&page=1&include_adult=false`
     );
-    return setSearchedMovies(response.data.results);
+    const data = response.data.results;
+    return setSearchedMovies(data);
   } catch (error) {
     console.log(`${error.name}: ${error.message}`);
   }

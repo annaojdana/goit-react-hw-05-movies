@@ -42,8 +42,11 @@ const MoviesPage = () => {
       ) : (
         <>
           <SearchBar onSubmit={onSubmit} />
-          {errorMessage && <div>{errorMessage}</div>}
-          <MovieList movies={searchedMovies} />
+          {errorMessage ? (
+            <div className="error">{errorMessage}</div>
+          ) : (
+            <MovieList movies={searchedMovies} />
+          )}
         </>
       )}
     </main>

@@ -8,10 +8,12 @@ const SearchBar = ({ onSubmit }) => {
 
   return (
     <form className={form} onSubmit={e => onSubmit(e)}>
-      <input key={nanoid()} className={input} type="text" name="query" />
-      <button type="submit" className={button}>
-        <span className={label}>Search</span>
-      </button>
+      <div>
+        <input key={nanoid()} className={input} type="text" name="query" />
+        <button type="submit" className={button}>
+          <span className={label}>Search</span>
+        </button>
+      </div>
     </form>
   );
 };

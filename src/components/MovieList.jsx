@@ -12,7 +12,11 @@ const MovieList = ({ movies }) => {
     <ul className={movie__list}>
       {movies.map(({ title, id, poster_path }) => (
         <li className={movie__item} key={id}>
-          <Link className={movie__link} to={`/movies/${id}`} state={{ from: location }}>
+          <Link
+            className={movie__link}
+            to={`/movies/${id}`}
+            state={{ from: location }}
+          >
             {poster_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w500${poster_path}`}
