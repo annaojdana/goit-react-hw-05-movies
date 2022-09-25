@@ -1,4 +1,5 @@
 import styles from './MovieList.module.css';
+import placeholderImg from '../components/img/placeholderr.png';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -18,7 +19,7 @@ const MovieList = ({ movies }) => {
                 alt={`Poster of ${title}`}
               />
             ) : (
-              <img src={'https://placehold.co/500x750'} alt={`Placeholder`} />
+              <img src={placeholderImg} alt={`Placeholder`} />
             )}
             <p className={movie__title}>{title}</p>
           </Link>

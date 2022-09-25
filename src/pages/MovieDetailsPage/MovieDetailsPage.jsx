@@ -1,4 +1,5 @@
 import styles from './MovieDetailsPage.module.css';
+import placeholderImg from '../../components/img/placeholderr.png';
 import React, { useState, useEffect, Suspense } from 'react';
 import styled from 'styled-components';
 import {
@@ -78,7 +79,7 @@ const MovieDetailsPage = () => {
               alt={`Poster of ${title}`}
             />
           ) : (
-            <img src={'https://placehold.co/500x750'} alt={`Placeholder`} />
+            <img src={placeholderImg} alt={`Placeholder`} />
           )}
         </div>
         <div className={right__content}>

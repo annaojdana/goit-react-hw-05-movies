@@ -1,4 +1,5 @@
 import styles from './Cast.module.css';
+import placeholderImg from '../../components/img/placeholderr.png';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCast } from 'services/apiSupport';
@@ -32,7 +33,7 @@ const Cast = () => {
                     />
                   ) : (
                     <img
-                      src={'https://placehold.jp/200x300.png'}
+                      src={placeholderImg}
                       alt={`Placeholder`}
                     />
                   )}
@@ -46,7 +47,7 @@ const Cast = () => {
           </ul>
         )}
       </section>
-   
+
   );
 };
 
