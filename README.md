@@ -2,7 +2,7 @@
 Projekt powstał w ramach kursu FULLSTACK PROGRAMISTA OD ZERA od GoIT
 
 Stona pracy:
-> [https://annaojdana.github.io/goit-react-hw-05-movies/](https://annaojdana.github.io/goit-react-hw-05-movies/)
+> [https://goit-react-hw-05-movies-ao.netlify.app/](https://goit-react-hw-05-movies-ao.netlify.app/)
 
 ## Szczegóły projektu
 
