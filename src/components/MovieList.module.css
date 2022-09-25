@@ -6,7 +6,7 @@
   list-style-type: none;
 }
 .movie__item {
-  max-width: 300px;
+  max-width: 216px;
   width: 100%;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -14,7 +14,10 @@
   background-color: #fff;
   transition: scale cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-
+.movie__list img {
+  width: 216px;
+  height: 324px;
+}
 .movie__item:hover {
   scale: 0.9;
 }
@@ -22,7 +25,6 @@
 .movie__title {
   padding: 20px;
   font-size: 20px;
-
 }
 .movie__link {
   text-decoration: none;
