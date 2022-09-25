@@ -1,17 +1,54 @@
 import styles from './MovieDetailsPage.module.css';
 import React, { useState, useEffect, Suspense } from 'react';
+import styled from 'styled-components';
 import {
   useLocation,
   useNavigate,
   useParams,
-  Link,
   Outlet,
+  NavLink,
 } from 'react-router-dom';
 import { fetchMovieById } from 'services/apiSupport';
 import Loader from 'components/Loader/Loader';
 
+const StyledLink = styled(NavLink)`
+  position: relative;
+  color: #373537;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 50px;
+  line-height: 25px;
+  &::after {
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 2px;
+    content: '';
+  }
+  &:hover {
+    &::after {
+      background-color: #e4007e;
+    }
+  }
+  &.active {
+    color: #e4007e;
+  }
+`;
+
 const MovieDetailsPage = () => {
-  const { btn, wrapper, left__content, right__content } = styles;
+  const {
+    btn,
+    wrapper,
+    left__content,
+    right__content,
+    heading,
+    vote,
+    text,
+    additional__heading,
+    additional__wrapper,
+    additional__list,
+  } = styles;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -46,26 +83,26 @@ const MovieDetailsPage = () => {
           )}
         </div>
         <div className={right__content}>
-          <h1>{title}</h1>
-          <p>User Score: {(vote_average * 10).toFixed(0)}%</p>
+          <h1 className={heading}>{title}</h1>
+          <p className={vote}>User Score: {(vote_average * 10).toFixed(0)}%</p>
           <h2>Overwiew</h2>
-          <p>{overview}</p>
+          <p className={text}>{overview}</p>
           <h2>Genres</h2>
-          <p>{genres?.map(({ name }) => name + ', ')}</p>
+          <p className={text}>{genres?.map(({ name }) => name + ', ')}</p>
         </div>
       </div>
-      <div>
-        <h3>Additional information</h3>
-        <ul>
+      <div className={additional__wrapper}>
+        <h3 className={additional__heading}>Additional information</h3>
+        <ul className={additional__list}>
           <li>
-            <Link to={`cast`} state={location.state}>
+            <StyledLink to={`cast`} state={location.state}>
               Cast
-            </Link>
+            </StyledLink>
           </li>
           <li>
-            <Link to={`reviews`} state={location.state}>
+            <StyledLink to={`reviews`} state={location.state}>
               Reviews
-            </Link>
+            </StyledLink>
           </li>
         </ul>
         <Suspense fallback={<Loader />}>
