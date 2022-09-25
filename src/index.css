@@ -14,9 +14,9 @@ html {
 
 body {
   margin: 0;
-  font-family: MyriadPro,sans-serif,Arial;
+  font-family: MyriadPro, sans-serif, Arial;
   color: #1d1b1d;
-  background-color: #F9FBFA;
+  background-color: #f9fbfa;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -48,3 +48,8 @@ h6 {
   margin: 0;
 }
 
+.error {
+  font-size: 18px;
+  color: #e4007e;
+  text-align: center;
+}

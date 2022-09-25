@@ -78,8 +78,11 @@
   border: 1px solid #e9e9eb;
   width: 100%;
 }
-.additional__list{
+.additional__list {
   list-style-type: none;
   display: flex;
   justify-content: center;
+}
+.additional__list li:not(:last-child) {
+  margin-right: 25px;
 }

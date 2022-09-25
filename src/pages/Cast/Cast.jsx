@@ -1,3 +1,4 @@
+import styles from './Cast.module.css';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCast } from 'services/apiSupport';
@@ -5,6 +6,8 @@ import { nanoid } from 'nanoid';
 // import PropTypes from 'prop-types';
 
 const Cast = () => {
+  const { list, item, title, text__wrapper } = styles;
+
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
 
@@ -16,12 +19,12 @@ const Cast = () => {
     <div>
       <section>
         {cast.length < 1 ? (
-          <p>Sorry, the cast is not available!</p>
+          <p className='error'>Sorry, the cast is not available!</p>
         ) : (
-          <ul>
+          <ul className={list}>
             {cast.map(({ character, name, profile_path }) => {
               return (
-                <li key={nanoid()}>
+                <li className={item} key={nanoid()}>
                   {profile_path ? (
                     <img
                       src={`https://image.tmdb.org/t/p/w200${profile_path}`}
@@ -33,8 +36,10 @@ const Cast = () => {
                       alt={`Placeholder`}
                     />
                   )}
-                  <h4>Name: {name}</h4>
-                  <p>Character: {character}</p>
+                  <div className={text__wrapper}>
+                    <h4 className={title}>{name}</h4>
+                    <p>Character: {character}</p>
+                  </div>
                 </li>
               );
             })}

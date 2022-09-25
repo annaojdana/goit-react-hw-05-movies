@@ -15,8 +15,7 @@ const StyledLink = styled(NavLink)`
   position: relative;
   color: #373537;
   text-decoration: none;
-  font-weight: 600;
-  margin-right: 50px;
+  font-weight: 500;
   line-height: 25px;
   &::after {
     position: absolute;
@@ -105,10 +104,10 @@ const MovieDetailsPage = () => {
             </StyledLink>
           </li>
         </ul>
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
       </div>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </section>
   );
 };
