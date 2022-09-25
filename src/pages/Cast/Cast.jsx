@@ -17,37 +17,32 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-
-      <section>
-        {cast.length < 1 ? (
-          <p className='error'>Sorry, the cast is not available!</p>
-        ) : (
-          <ul className={list}>
-            {cast.map(({ character, name, profile_path }) => {
-              return (
-                <li className={item} key={nanoid()}>
-                  {profile_path ? (
-                    <img
-                      src={`https://image.tmdb.org/t/p/w200${profile_path}`}
-                      alt={`${name}`}
-                    />
-                  ) : (
-                    <img
-                      src={placeholderImg}
-                      alt={`Placeholder`}
-                    />
-                  )}
-                  <div className={text__wrapper}>
-                    <h4 className={title}>{name}</h4>
-                    <p>Character: {character}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </section>
-
+    <section>
+      {cast.length < 1 ? (
+        <p className="error">Sorry, the cast is not available!</p>
+      ) : (
+        <ul className={list}>
+          {cast.map(({ character, name, profile_path }) => {
+            return (
+              <li className={item} key={nanoid()}>
+                {profile_path ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200${profile_path}`}
+                    alt={`${name}`}
+                  />
+                ) : (
+                  <img src={placeholderImg} alt={`Placeholder`} />
+                )}
+                <div className={text__wrapper}>
+                  <h4 className={title}>{name}</h4>
+                  {character ?? <p> {`as ${character}`}</p>}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </section>
   );
 };
 
