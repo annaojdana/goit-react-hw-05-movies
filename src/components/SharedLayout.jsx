@@ -1,17 +1,30 @@
 import styles from './SharedLayout.module.css';
 import styled from 'styled-components';
-import React, {Suspense} from 'react';
+import React, { Suspense } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import Loader from './Loader/Loader';
 
 const StyledLink = styled(NavLink)`
-  color: #fff;
+  position: relative;
+  color: #373537;
   text-decoration: none;
   font-weight: 600;
   margin-right: 50px;
-
+  &::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    content: '';
+  }
+  &:hover {
+    &::after {
+      background-color: #e4007e;
+    }
+  }
   &.active {
-    color: #ae0808;
+    color: #e4007e;
   }
 `;
 const SharedLayout = () => {
@@ -25,9 +38,8 @@ const SharedLayout = () => {
         </nav>
       </header>
       <Suspense fallback={<Loader />}>
-          <Outlet />
+        <Outlet />
       </Suspense>
-
     </>
   );
 };
