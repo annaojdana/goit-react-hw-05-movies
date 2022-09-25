@@ -18,9 +18,7 @@ const Cast = () => {
 
   return (
     <section>
-      {cast.length < 1 ? (
-        <p className="error">Sorry, the cast is not available!</p>
-      ) : (
+      {cast.length > 0 ? (
         <ul className={list}>
           {cast.map(({ character, name, profile_path }) => {
             return (
@@ -41,6 +39,8 @@ const Cast = () => {
             );
           })}
         </ul>
+      ) : (
+        <p className="error">Sorry, the cast is not available!</p>
       )}
     </section>
   );
